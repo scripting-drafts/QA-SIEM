@@ -57,9 +57,6 @@ if ! getent group "$TOKEN_GROUP" >/dev/null 2>&1; then
   echo "token group does not exist: $TOKEN_GROUP" >&2
   exit 2
 fi
-if [[ "$TOKEN_GROUP" != "qa-siem" ]]; then
-  usermod -aG "$TOKEN_GROUP" qa-siem
-fi
 
 make -C "$ROOT" clean all
 install -d -o qa-siem -g qa-siem -m 0700 "$STATE"
@@ -86,6 +83,9 @@ fi
 chown "root:$TOKEN_GROUP" "$TOKEN"
 chmod 0640 "$TOKEN"
 install -o root -g root -m 0644 "$ROOT/systemd/qa-siem.service" "$SERVICE"
+if [[ "$TOKEN_GROUP" != "qa-siem" ]]; then
+  sed -i "/^Group=qa-siem$/a SupplementaryGroups=$TOKEN_GROUP" "$SERVICE"
+fi
 systemctl daemon-reload
 systemctl enable --now qa-siem.service
 sleep 1

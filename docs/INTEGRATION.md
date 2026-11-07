@@ -9,8 +9,8 @@ through that account's group:
 sudo scripts/install.sh --token-group gerard
 ```
 
-The installer adds `qa-siem` to that group and makes the token readable by both
-the service and the QA operator. Create `config/siem.json` from
+The installer gives the `qa-siem` service supplementary access to that group
+and makes the token readable by both the service and the QA operator. Create `config/siem.json` from
 `config/siem.example.json`:
 
 ```json
