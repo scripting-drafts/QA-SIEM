@@ -41,6 +41,13 @@ sudo scripts/install.sh --token-group <qa-group>
 The SQLite schema is additive and uses `IF NOT EXISTS`; back up
 `/var/lib/qa-siem/siem.db` before a major upgrade.
 
+## Keeping repositories in sync
+
+The companion Quality-Assurance-Sentinels repository maintains the same Ubuntu
+22.04-26.10 matrix in `docs/COMPATIBILITY.md` and exposes `qa compat --strict`.
+Update both matrices and run both test suites in the same change when the
+baseline moves.
+
 ## Portability notes
 
 - `MHD_HTTP_CONTENT_TOO_LARGE` is used when available; a 413 fallback is
