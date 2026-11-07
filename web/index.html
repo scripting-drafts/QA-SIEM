@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QA SIEM</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <div>
+      <h1>QA SIEM</h1>
+      <p class="muted">Local security event monitor</p>
+    </div>
+    <div class="auth">
+      <input id="token" type="password" placeholder="Bearer token" autocomplete="off" spellcheck="false">
+      <button id="connect">Connect</button>
+      <button id="refresh" class="secondary">Refresh</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="error" class="error hidden" role="alert"></section>
+
+    <section class="cards">
+      <article><span class="label">Events</span><strong id="stat-events">-</strong></article>
+      <article><span class="label">Open alerts</span><strong id="stat-open">-</strong></article>
+      <article><span class="label">Total alerts</span><strong id="stat-alerts">-</strong></article>
+      <article><span class="label">Hosts</span><strong id="stat-hosts">-</strong></article>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>Open alerts</h2>
+        <span id="updated" class="muted"></span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Severity</th><th>Rule</th><th>Host</th><th>Count</th><th>Last seen</th><th></th></tr></thead>
+          <tbody id="alerts"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Recent events</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Time</th><th>Severity</th><th>Type</th><th>Rule</th><th>Host</th><th>Subject</th></tr></thead>
+          <tbody id="events"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

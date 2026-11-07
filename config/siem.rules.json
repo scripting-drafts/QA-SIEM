@@ -1,0 +1,30 @@
+{
+  "alert_on_severities": ["critical", "error"],
+  "ignore_rules": ["hardware.vendor.log"],
+  "thresholds": [
+    {
+      "name": "repeated-error",
+      "match": {"severity": "error"},
+      "count": 3,
+      "window_s": 300,
+      "severity": "error",
+      "detail": "Repeated error from the same source"
+    },
+    {
+      "name": "repeated-warning",
+      "match": {"severity": "warning"},
+      "count": 5,
+      "window_s": 600,
+      "severity": "warning",
+      "detail": "Repeated warning from the same source"
+    },
+    {
+      "name": "lsm-unreadable-repeat",
+      "match": {"rule": "lsm.state_unreadable"},
+      "count": 3,
+      "window_s": 1800,
+      "severity": "warning",
+      "detail": "LSM state remained unreadable"
+    }
+  ]
+}

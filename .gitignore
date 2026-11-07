@@ -1,0 +1,6 @@
+build/
+qa-siem
+*.db
+*.db-wal
+*.db-shm
+*.o
