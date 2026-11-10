@@ -110,4 +110,12 @@ non-loopback binds unless `--allow-plaintext` is explicitly set.
 | LSM runs | `lsm` | info/warning | `lsm.run` |
 | ticket drafts | `ticket` | info | `ticket.draft` |
 
+Core-2 findings are ordinary findings with dedicated rules:
+`core2.retired.online`, `core2.isolation.unfenced`, `core2.isolation.missing`,
+`core2.lab.*`, `core2.irq.affinity`, `core2.topology.*`, and the fault-lab
+verdicts `core2.ab.divergence`, `core2.ab.hw_suspect`,
+`core2.ab.control_unstable`. The shipped rules in `config/siem.rules.json`
+alert immediately on retired-online, unfenced cgroups and A/B divergence, and
+after two cycles on incomplete isolation parameters.
+
 All payloads are redacted by the QA Sentinels exporter before transmission.

@@ -25,6 +25,38 @@
       "window_s": 1800,
       "severity": "warning",
       "detail": "LSM state remained unreadable"
+    },
+    {
+      "name": "core2-retired-online",
+      "match": {"rule": "core2.retired.online"},
+      "count": 1,
+      "window_s": 300,
+      "severity": "critical",
+      "detail": "Faulty core 2 is online while the host is in retired mode"
+    },
+    {
+      "name": "core2-unfenced",
+      "match": {"rule": "core2.isolation.unfenced"},
+      "count": 1,
+      "window_s": 300,
+      "severity": "critical",
+      "detail": "A normal cgroup can place work on faulty core 2"
+    },
+    {
+      "name": "core2-ab-divergence",
+      "match": {"rule": "core2.ab.divergence"},
+      "count": 1,
+      "window_s": 86400,
+      "severity": "critical",
+      "detail": "Fault-lab A/B produced divergent output (silent-corruption candidate)"
+    },
+    {
+      "name": "core2-isolation-missing",
+      "match": {"rule": "core2.isolation.missing"},
+      "count": 2,
+      "window_s": 1800,
+      "severity": "warning",
+      "detail": "Core-2 isolation parameters remain incomplete"
     }
   ]
 }
