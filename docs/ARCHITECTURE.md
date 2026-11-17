@@ -12,6 +12,14 @@ QA SIEM adds durable storage, alert state, search, and a dashboard.
 - `cJSON` — strict JSON parsing and response generation.
 - Systemd unit — unprivileged `qa-siem` user, no capabilities, read-only system.
 
+## Legal register
+
+QA SIEM serves a read-only legal register at `/legal`. The page fetches
+`/legal.json`, which the build copies from `legal/manifest.json`. The static
+route is public like the dashboard; it contains license and review metadata,
+not event data or tokens. `make legal-check` validates the manifest, the web
+copy, the version, and the installed artifacts.
+
 ## Data flow
 
 ```text

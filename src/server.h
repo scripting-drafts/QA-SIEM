@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <time.h>
 
-#define QA_SIEM_VERSION "1.0.0"
+#define QA_SIEM_VERSION "1.1.0"
 
 struct MHD_Daemon;
 

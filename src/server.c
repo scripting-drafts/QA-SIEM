@@ -363,6 +363,17 @@ static enum MHD_Result route(siem_server *srv, struct MHD_Connection *conn,
     if (strcmp(method, "GET") == 0 && strcmp(url, "/style.css") == 0) {
         return serve_static(srv, conn, "style.css", "text/css; charset=utf-8");
     }
+    if (strcmp(method, "GET") == 0 && strcmp(url, "/legal") == 0) {
+        return serve_static(srv, conn, "legal.html", "text/html; charset=utf-8");
+    }
+    if (strcmp(method, "GET") == 0 && strcmp(url, "/legal.js") == 0) {
+        return serve_static(srv, conn, "legal.js",
+                            "application/javascript; charset=utf-8");
+    }
+    if (strcmp(method, "GET") == 0 && strcmp(url, "/legal.json") == 0) {
+        return serve_static(srv, conn, "legal.json",
+                            "application/json; charset=utf-8");
+    }
 
     int protected = strcmp(url, "/ingest") == 0 ||
                     strncmp(url, "/api/", 5) == 0;

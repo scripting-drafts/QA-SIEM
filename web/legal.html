@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>License &amp; Legal — QA SIEM</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="legal-page">
+  <header>
+    <div>
+      <h1>License &amp; Legal</h1>
+      <p class="muted">QA SIEM own-product compliance register</p>
+    </div>
+    <div class="auth">
+      <a class="legal-link" href="/">Back to dashboard</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="legal-error" class="error hidden" role="alert"></section>
+
+    <section id="legal-content" class="hidden">
+      <div class="legal-summary">
+        <article class="legal-card">
+          <span class="label">Product</span>
+          <strong id="legal-product">—</strong>
+          <span id="legal-version" class="muted"></span>
+        </article>
+        <article class="legal-card">
+          <span class="label">License</span>
+          <strong id="legal-license">—</strong>
+          <span id="legal-reviewed" class="muted"></span>
+        </article>
+        <article class="legal-card">
+          <span class="label">Status</span>
+          <strong id="legal-status">—</strong>
+          <span id="legal-pending" class="muted"></span>
+        </article>
+      </div>
+
+      <p class="muted legal-source">Source: <a id="legal-source" href="#" rel="noreferrer"></a></p>
+
+      <section>
+        <div class="section-head">
+          <h2>Components</h2>
+          <span id="legal-component-count" class="muted"></span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Component</th><th>Version</th><th>License</th><th>Scope</th></tr></thead>
+            <tbody id="legal-components"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <h2>Manual reviews</h2>
+          <span id="legal-review-count" class="muted"></span>
+        </div>
+        <div id="legal-reviews" class="legal-list"></div>
+      </section>
+
+      <section>
+        <h2>Documents</h2>
+        <div id="legal-documents" class="legal-list"></div>
+      </section>
+
+      <p class="muted legal-disclaimer">
+        This register is an inventory and attestation aid, not legal advice.
+        Review pending items with qualified counsel before relying on them.
+      </p>
+    </section>
+  </main>
+
+  <script src="/legal.js"></script>
+</body>
+</html>

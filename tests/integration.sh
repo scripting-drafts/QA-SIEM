@@ -29,6 +29,10 @@ for _ in $(seq 1 100); do
 done
 curl -fsS "http://127.0.0.1:$PORT/healthz" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d["status"]=="ok"'
 
+curl -fsS "http://127.0.0.1:$PORT/legal" | grep -q "License &amp; Legal"
+curl -fsS "http://127.0.0.1:$PORT/legal.json" \
+  | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d["product"]=="QA SIEM" and d["spdx"]=="MIT"'
+
 CODE="$(curl -s -o /dev/null -w '%{http_code}' "http://127.0.0.1:$PORT/api/v1/stats")"
 [[ "$CODE" == "401" ]]
 

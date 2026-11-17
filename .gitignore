@@ -4,3 +4,6 @@ qa-siem
 *.db-wal
 *.db-shm
 *.o
+web/legal.json
+__pycache__/
+*.pyc
