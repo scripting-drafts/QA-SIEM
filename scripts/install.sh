@@ -4,6 +4,7 @@ set -Eeuo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SERVICE=/etc/systemd/system/qa-siem.service
 BIN=/usr/local/bin/qa-siem
+UNINSTALLER=/usr/local/sbin/qa-siem-uninstall
 WEB=/usr/share/qa-siem/web
 DOC=/usr/share/doc/qa-siem
 ETC=/etc/qa-siem
@@ -15,7 +16,9 @@ UNINSTALL=0
 TOKEN_GROUP="${QA_TOKEN_GROUP:-qa-siem}"
 
 usage() {
-  echo "Usage: sudo $0 [--uninstall] [--purge] [--token-group GROUP]" >&2
+  echo "Usage: sudo $0 [--token-group GROUP]" >&2
+  echo "       sudo $0 --uninstall [--purge]" >&2
+  echo "       sudo scripts/uninstall.sh [--purge] [--dry-run] [--yes]" >&2
 }
 while (($#)); do
   case "$1" in
@@ -32,22 +35,20 @@ while (($#)); do
   shift
 done
 
+if (( PURGE && ! UNINSTALL )); then
+  echo "--purge requires --uninstall; use scripts/uninstall.sh --purge" >&2
+  exit 2
+fi
+
 if [[ $(id -u) -ne 0 ]]; then
   echo "run as root: sudo $0" >&2
   exit 1
 fi
 
 if (( UNINSTALL )); then
-  systemctl disable --now qa-siem.service 2>/dev/null || true
-  rm -f "$SERVICE" "$BIN"
-  systemctl daemon-reload
-  rm -rf "$WEB" "$DOC"
-  if (( PURGE )); then
-    rm -rf "$STATE" "$ETC"
-    userdel qa-siem 2>/dev/null || true
-  fi
-  echo "qa-siem service removed."
-  exit 0
+  uninstall_args=(--yes)
+  (( PURGE )) && uninstall_args+=(--purge)
+  exec "$ROOT/scripts/uninstall.sh" "${uninstall_args[@]}"
 fi
 
 if ! id -u qa-siem >/dev/null 2>&1; then
@@ -64,6 +65,7 @@ install -d -o root -g "$TOKEN_GROUP" -m 0750 "$ETC"
 install -d -o root -g root -m 0755 "$WEB"
 install -d -o root -g root -m 0755 "$DOC"
 install -o root -g root -m 0755 "$ROOT/qa-siem" "$BIN"
+install -o root -g root -m 0755 "$ROOT/scripts/uninstall.sh" "$UNINSTALLER"
 install -o root -g root -m 0644 "$ROOT/web/index.html" "$WEB/index.html"
 install -o root -g root -m 0644 "$ROOT/web/app.js" "$WEB/app.js"
 install -o root -g root -m 0644 "$ROOT/web/style.css" "$WEB/style.css"

@@ -5,10 +5,10 @@
   "copyright": "Copyright (c) 2026 Gerard Sala",
   "source": "https://github.com/scripting-drafts/QA-SIEM",
   "homepage": "https://github.com/scripting-drafts/QA-SIEM",
-  "lastReviewed": "2026-11-17",
-  "reviewedVersion": "1.1.0",
+  "lastReviewed": "2026-11-25",
+  "reviewedVersion": "1.2.0",
   "reviewedComponents": {
-    "qa-siem": "1.1.0",
+    "qa-siem": "1.2.0",
     "sqlite": "host",
     "libmicrohttpd": "host",
     "cjson": "host",
@@ -21,7 +21,7 @@
     {
       "id": "qa-siem",
       "name": "QA SIEM",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "license": "MIT",
       "scope": "project"
     },

@@ -64,7 +64,21 @@ introduced.
 
 ## Uninstall
 
+Installed hosts get `/usr/local/sbin/qa-siem-uninstall`:
+
 ```bash
-sudo scripts/install.sh --uninstall
-sudo scripts/install.sh --uninstall --purge   # also removes data and user
+sudo qa-siem-uninstall              # keep database and account
+sudo qa-siem-uninstall --purge      # remove database, logs, user, group
+sudo qa-siem-uninstall --dry-run    # show actions first
 ```
+
+From a source checkout, use `sudo scripts/uninstall.sh` with the same options.
+The default removes the service, unit, binary, web assets, docs, legacy
+forwarder units, and `/etc/qa-siem` (token, rules, TLS material). It keeps
+`/var/lib/qa-siem` and the `qa-siem` user/group so a reinstall keeps events.
+`--purge` is the clean-slate option: it also removes the database, logs, and
+account. The script verifies that removed paths are gone and exits non-zero if
+anything remains. Add `--yes` for non-interactive runs.
+
+`sudo scripts/install.sh --uninstall [--purge]` remains as a compatibility
+wrapper around the same uninstaller.

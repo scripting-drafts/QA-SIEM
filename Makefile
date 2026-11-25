@@ -33,6 +33,7 @@ $(TEST_BIN): $(TEST_SRC)
 
 test: $(TEST_BIN) legal-check
 	./$(TEST_BIN)
+	./tests/uninstall.sh
 
 integration: qa-siem legal
 	./tests/integration.sh
@@ -42,6 +43,7 @@ clean:
 
 install: qa-siem legal
 	install -D -m 0755 qa-siem $(DESTDIR)/usr/local/bin/qa-siem
+	install -D -m 0755 scripts/uninstall.sh $(DESTDIR)/usr/local/sbin/qa-siem-uninstall
 	install -D -m 0644 web/index.html $(DESTDIR)/usr/share/qa-siem/web/index.html
 	install -D -m 0644 web/app.js $(DESTDIR)/usr/share/qa-siem/web/app.js
 	install -D -m 0644 web/style.css $(DESTDIR)/usr/share/qa-siem/web/style.css
